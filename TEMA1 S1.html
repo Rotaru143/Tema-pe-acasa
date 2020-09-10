@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div data-ng-app="" data-ng-init="a=0;b=0;tabla=[1,2,3,4,5,6,7,8,9];">
+
+<h2>Calculul a doua numere</h2>
+
+A: <input type="number" ng-model="a">
+B: <input type="number" ng-model="b">
+
+<p><b>Suma:</b> {{a + b}}</p>
+<p><b>Produsul:</b> {{a * b}}</p>
+<p><b>Diferenta:</b> {{a - b}}</p>
+<p><b>Citul:</b> {{a / b}}</p>
+
+		<b>Tabla inmultirii la {{a}} (Fara ng-repeat) </b> <br>
+		{{a}} x 1 = {{a*1}} <br>
+		{{a}} x 2 = {{a*2}} <br>
+		{{a}} x 3 = {{a*3}} <br>
+		{{a}} x 4 = {{a*4}} <br>
+		{{a}} x 5 = {{a*5}} <br>
+		{{a}} x 6 = {{a*6}} <br>
+		{{a}} x 7 = {{a*7}} <br>
+		{{a}} x 8 = {{a*8}} <br>
+		{{a}} x 9 = {{a*9}} <br> <br>
+
+		<b>Tabla inmultirii la {{a}} (Cu ng-repeat) </b>
+		<p ng-repeat="x in tabla">{{a}} x {{x}} = {{a*x}}</p>
+
+</div>
+
+</body>
+</html>
