@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+    * {
+        margin: 5px;
+    }
+    body {
+        margin: 30px;
+        font-size: 20px;
+    }
+
+    p {
+        background: pink;
+        padding: 10px;
+        border-radius: 4px;
+    }
+</style>
+<body>
+
+<main ng-app="app" ng-controller="mainCtrl">
+    <label for="filterByName">Filtru pentru nume:</label> <br>
+    <input type="text" id="filterByName" ng-model="filterInput.firstName">
+
+    <br>
+
+    <label for="filterByLastName">Filtru pentru prenume:</label> <br>
+    <input type="text" id="filterByLastName" ng-model="filterInput.lastName">
+
+
+    <br>
+
+    <label for="filterByNota">Filtru pentru notă:</label> <br>
+    <input type="text" id="filterByNota" ng-model="filterInput.nota">
+
+    <hr>
+
+    <h2>Lista:</h2>
+
+    <p ng-repeat="student in students | filter: filterInput">- {{ student.firstName }} {{ student.lastName }} {{ student.nota }}</p>
+</main>
+
+<script>
+    var app = angular.module('app', []);
+    app.controller('mainCtrl', function($scope) {
+        $scope.filterInput = {};
+
+        $scope.students = [
+            { firstName: 'Rotaru', lastName: 'Cristina', nota: '8' },
+            { firstName: 'Mocanu', lastName: 'Nicolai', nota: '9' },
+            { firstName: 'Chihai', lastName: 'Radu', nota: '7' },
+            { firstName: 'Lazar', lastName: 'Ion', nota: '6' },
+            { firstName: 'Palanciuc', lastName: 'Ana', nota: '8' },
+            { firstName: 'Zima', lastName: 'Palina', nota: '10' },
+            { firstName: 'Nuca', lastName: 'Violeta', nota: '7' },
+        ]
+    });
+</script>
+
+</body>
+</html>

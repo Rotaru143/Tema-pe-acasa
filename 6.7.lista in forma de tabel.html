@@ -1,0 +1,64 @@
+<html>
+   <head>
+      <title>Angular JS Table</title>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      
+      <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+   </head>
+   
+   <body>
+      <h2>Lista studenților în formă de tabel și aranjați descrescător după note</h2>
+      <div ng-app = "mainApp" ng-controller = "studentController">
+         
+         <table border = "0">
+            
+               <td>
+                  <table>
+                     <tr>
+                        <th>Name</th>
+                        <th>Lastname</th>
+                        <th>Marks</th>
+                     </tr>
+                     <tr ng-repeat = "subject in student.subjects | orderBy : '-marks'">
+                        <td>{{ subject.name }}</td>
+                          <td>{{ subject.lastname }}</td>
+                        <td>{{ subject.marks }}</td>
+                     </tr>
+                  </table>
+               </td>
+            
+         </table>
+      </div>
+      
+      <script>
+         var mainApp = angular.module("mainApp", []);
+         
+         mainApp.controller('studentController', function($scope) {
+            $scope.student = {
+             
+               subjects:[
+                  {name:'Rotaru',lastname:'Cristina',marks:10},
+                  {name:'Verebcean',lastname:'Ana',marks:8},
+                  {name:'Mocan',lastname:'Ion',marks:6},
+                  {name:'Ivanes',lastname:'Seva',marks:9},
+                  {name:'Hindi',lastname:'Eugen',marks:10}
+               ],
+              
+            };
+         });
+      </script>
+      
+   </body>
+</html>

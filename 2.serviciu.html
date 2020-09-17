@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+    * {
+        margin: 5px;
+    }
+    body {
+        margin: 30px;
+        font-size: 20px;
+    }
+</style>
+<body>
+
+<main ng-app="app" ng-controller="mainCtrl">
+    <p>Introduceți un număr</p>
+    <input type="number" ng-model="number">
+
+    <br>
+
+    <button ng-click="calculate()">Submit</button>
+
+    <br>
+
+    <h3>Rezultatul ridicării la pătrat: {{ result }}</h3>
+</main>
+
+<script>
+    var app = angular.module('app', []);
+
+    app.service('myService', function () {
+        this.pow = function (num) {
+            return num * num;
+        }
+    });
+
+    app.controller('mainCtrl', function ($scope, myService) {
+        $scope.number = 0
+
+        $scope.calculate = function () {
+            $scope.result = myService.pow($scope.number);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+    * {
+        margin: 5px;
+    }
+
+    body {
+        margin: 30px;
+        font-size: 20px;
+    }
+
+    p {
+        background: pink;
+        padding: 10px;
+        border-radius: 4px;
+    }
+</style>
+<body>
+
+<main ng-app="app" ng-controller="mainCtrl">
+
+    <select ng-model="selectedStudent">
+        <option value=""> Selectati studentul </option>
+        <option ng-repeat="student in students" ng-value="{{ student }}">
+            {{ student.firstName + ' ' + student.lastName + ' ' + student.nota }}
+        </option>
+    </select>
+
+    <div ng-if="selectedStudent">
+        <h3>Studentul Selectat:</h3>
+
+        <p>Nume: {{ selectedStudent.firstName }}</p>
+        <p>Prenume: {{ selectedStudent.lastName }}</p>
+        <p>Nota: {{ selectedStudent.nota }}</p>
+    </div>
+</main>
+
+<script>
+    var app = angular.module('app', []);
+    app.controller('mainCtrl', function($scope) {
+        $scope.students = [
+            { firstName: 'Mocan', lastName: 'Ion', nota: 7, },
+            { firstName: 'Rotaru', lastName: 'Mihail', nota: 8, },
+            { firstName: 'Chihai', lastName: 'Elena', nota: 9, },
+            { firstName: 'Verebcean', lastName: 'Cristina', nota: 10, },
+            { firstName: 'Snegur', lastName: 'Victor', nota: 6, },
+            { firstName: 'Creciun', lastName: 'Sergiu', nota: 8, },
+            { firstName: 'Prutean', lastName: 'Violeta', nota: 10 },
+        ]
+    });
+</script>
+</body>
+</html>
