@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+</script>
+
+          
+                    <!--  Stiluri pentru formular si validare-->
+<style>
+input.ng-invalid {
+    background-color:Tomato;
+}
+input.ng-valid {
+    background-color:lightgreen;
+}
+form.ng-pristine {
+    background-color:lightblue;
+}
+form.ng-dirty {
+    background-color:pink;
+}
+.center{
+      margin: auto;
+      width: 60%;
+      border: 3px solid #73AD21;
+      padding: 10px;
+}
+
+</style>
+<body>
+ 
+<div class="center"ng-app="myApp" ng-controller="formCtrl">
+
+                           <!--  Formularul pentru angajarer-->  
+  <form >
+    <h1>Formular pentru angajare</h1>
+    Numele:<br>
+    <input type="text" ng-model="firstName"required><br><br>
+    
+    Prenumele:<br>
+    <input type="text" ng-model="lastName"required><br><br>
+    
+     Data nașterii:<br>
+    <input type="date" ng-model="data"required><br><br>
+    
+    Facultatea:
+  <input type="radio" ng-model="myVar" value="Chimie">Chimie
+  <input type="radio" ng-model="myVar" value="Informatică">Informatică
+  <input type="radio" ng-model="myVar" value="Matematică">Matematică
+  <input type="radio" ng-model="myVar" value="Biologie">Biologie
+  <br><br>
+  
+  Obiectul predării:
+  <select ng-model="obiect">
+    <option value="">
+    <option value="Chimia organică">Chimia organică
+    <option value="Informatică">Informatică
+    <option value="Matematica economică">Matematica economică
+    <option value="Biologia">Biologia
+  </select><br><br>
+  
+     Salariu așteptat:<br>
+    <input type="number" ng-model="sal"required><br><br>
+      
+                     <!--   Rezultatul dupa confirmarea datelor--> 
+ <div ng-show="afisare"> 
+    <h3>Rezultatul :</h3> 
+    
+    <p>Nume: {{firstName}} </p>
+    <p>Prenume : {{lastName}}</p>
+    <p> Datat nașterii :{{ data | date:'EEEE, MMMM d, y'}}</p>
+    <p> Facultatea : {{myVar}} <p>
+    <p> Obiectul predării : {{obiect}} <p>
+    <p> Salariu așteptat : {{sal}} <p>
+
+                     <!--  Conditie pentru salariul dorit --> 
+    <p ng-if="sal>5000"disabled="disabled" > EXAGERAT!!! </p>  
+    <p ng-if="sal<3000" > Vă subestimați!!! </p>
+    </div> 
+    
+    <button type="submit "ng-click="submit()"ng-disabled="myForm.$invalid">Confirmă</button>
+    <button type="reset "ng-click="reset()">Anulează</button>
+
+    </form>
+</div>
+
+      <!--  Scriptul care permite afisarea datelor --> 
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope) {
+  $scope.afisare=false;
+    $scope.reset = function() {
+        $scope.firstName = $scope.lastName='';
+        $scope.data = $scope.myVar='';
+        $scope.obiect = $scope.sal='';
+    };
+    $scope.submit=function(sal){
+    $scope.afisare=!$scope.afisare;
+   };
+});
+</script>
+
+
+</body>
+</html>
